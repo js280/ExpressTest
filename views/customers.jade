@@ -8,15 +8,17 @@ block content
 			h1=title
 		ul
 			each doc in data
-				li= doc.last_name + ", " + doc.first_name
+				li #{doc.last_name} , #{doc.first_name} #[a.glyphicon.glyphicon-trash(role="button", style="color: #ff0000; font-size: 10px;", href="./customers/remove?id=#{doc._id}")]
 
-		form.form-inline#add_form(name="add_form", method="post")
+		p#warning.bg-danger #{err_msg}
+
+		form.form-inline#add_form(name="add_form", method="post", action="/customers/add")
 			div.form-group
 				label(for="first_name") First Name: 
-				input.input(type="text", name="first_name", placeholder="First Name...")
+				input.input(type="text", name="first_name", placeholder="First Name...", required="required")
 				br
 				label(for="last_name") Last Name: 
-				input(type="text", name="last_name", placeholder="Last Name...")
+				input(type="text", name="last_name", placeholder="Last Name...", required="required")
 				br 
 				br
 				button(class="btn btn-primary", type="submit") Submit
